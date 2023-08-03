@@ -10,7 +10,7 @@ export default observer(function ActivityList() {
 
     function handleActivityDelete(e: SyntheticEvent<HTMLButtonElement>, id: string) {
         setTarget(e.currentTarget.name);
-        deleteActivity(id).then(r => {});
+        deleteActivity(id).then(_ => {});
     }
 
     return (
