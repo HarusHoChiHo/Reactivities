@@ -20,7 +20,7 @@ axios.interceptors.response.use(async response => {
     switch (status) {
         case 400:
             if(config.method === "get" && data.errors.hasOwnProperty("id")) {
-                router.navigate("/not-found");
+                router.navigate("/not-found").then(_ => {});
                 break;
             }
             if (data.errors) {
@@ -42,11 +42,11 @@ axios.interceptors.response.use(async response => {
             toast.error("forbidden");
             break;
         case 404:
-            router.navigate("/notfound");
+            router.navigate("/notfound").then(_ => {});
             break;
         case 500:
             store.commonStore.setServerError(data);
-            router.navigate("/server-error");
+            router.navigate("/server-error").then(_ => {});
             break;
     }
     return Promise.reject(error);
