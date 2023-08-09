@@ -11,6 +11,14 @@
     <ProjectReference Include="..\Persistence\Persistence.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="Interfaces\" />
+    <None Remove="Profiles\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Interfaces\" />
+    <Folder Include="Profiles\" />
+  </ItemGroup>
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>

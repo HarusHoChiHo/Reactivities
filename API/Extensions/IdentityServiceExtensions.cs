@@ -1,9 +1,12 @@
 ﻿using API.Services;
 using Domain;
+using Infrastructure.Security;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.IdentityModel.Tokens;
 using Persistence;
 using System.Text;
+using static Infrastructure.Security.IsHostRequirement;
 
 namespace API.Extensions
 {
@@ -19,7 +22,7 @@ namespace API.Extensions
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config["TokenKey"]));
 
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(opt => 
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(opt =>
             {
                 opt.TokenValidationParameters = new TokenValidationParameters
                 {
@@ -30,6 +33,15 @@ namespace API.Extensions
                 };
             });
 
+            services.AddAuthorization(opt =>
+            {
+                opt.AddPolicy("IsActivityHost", policy =>
+                {
+                    policy.Requirements.Add(new IsHostRequirement());
+                });
+            });
+
+            services.AddTransient<IAuthorizationHandler, IsHostRequirementHandler>();
             services.AddScoped<TokenService>();
 
             return services;
