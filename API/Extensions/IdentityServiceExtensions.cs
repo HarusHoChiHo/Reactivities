@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.IdentityModel.Tokens;
 using Persistence;
 using System.Text;
-using static Infrastructure.Security.IsHostRequirement;
 
 namespace API.Extensions
 {
