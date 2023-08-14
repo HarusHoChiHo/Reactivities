@@ -15,11 +15,13 @@
     <None Remove="Interfaces\" />
     <None Remove="Profiles\" />
     <None Remove="Photos\" />
+    <None Remove="Comments\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Interfaces\" />
     <Folder Include="Profiles\" />
     <Folder Include="Photos\" />
+    <Folder Include="Comments\" />
   </ItemGroup>
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
