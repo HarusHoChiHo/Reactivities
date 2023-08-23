@@ -7,34 +7,34 @@ import ActivityDetails from "../../features/activities/details/ActivityDetails";
 import TestErrors from "../../features/errors/TestError";
 import NotFound from "../../features/errors/NotFound";
 import ServerError from "../../features/errors/ServerError";
-import LoginForm from "../../features/users/LoginForm";
 import ProfilePages from "../../features/profiles/ProfilePages";
+import RequireAuth from "./RequireAuth";
 
 export const routes: RouteObject[] = [
     {
         path: "/",
         element: <App/>,
         children: [
-            {
-                path: "activities", element: <ActivityDashboard />
-            },
-            {
-                path: "activities/:id", element: <ActivityDetails />
-            },
-            {
-                path: "createActivity", element: <ActivityForm key={"create"}/>
-            },
-            {
-                path: "manage/:id", element: <ActivityForm key={"manage"}/>
-            },
-            {
-                path: "profiles/:username", element: <ProfilePages />
-            },
-            {
-                path: "login", element: <LoginForm key={"login"}/>
-            },
-            {
-                path: "errors", element: <TestErrors />
+            {element: <RequireAuth />, children: [
+                    {
+                        path: "activities", element: <ActivityDashboard />
+                    },
+                    {
+                        path: "activities/:id", element: <ActivityDetails />
+                    },
+                    {
+                        path: "createActivity", element: <ActivityForm key={"create"}/>
+                    },
+                    {
+                        path: "manage/:id", element: <ActivityForm key={"manage"}/>
+                    },
+                    {
+                        path: "profiles/:username", element: <ProfilePages />
+                    },
+                    {
+                        path: "errors", element: <TestErrors />
+                    },
+                ]
             },
             {
                 path: "not-found", element: <NotFound />
